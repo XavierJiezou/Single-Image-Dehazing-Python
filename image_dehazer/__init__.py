@@ -32,12 +32,12 @@ class image_dehazer():
     def __BoundCon(self, HazeImg):
         if (len(HazeImg.shape) == 3):
 
-            t_b = np.maximum((self._A[0] - HazeImg[:, :, 0].astype(float)) / (self._A[0] - self.C0),
-                             (HazeImg[:, :, 0].astype(float) - self._A[0]) / (self.C1 - self._A[0]))
-            t_g = np.maximum((self._A[1] - HazeImg[:, :, 1].astype(float)) / (self._A[1] - self.C0),
-                             (HazeImg[:, :, 1].astype(float) - self._A[1]) / (self.C1 - self._A[1]))
-            t_r = np.maximum((self._A[2] - HazeImg[:, :, 2].astype(float)) / (self._A[2] - self.C0),
-                             (HazeImg[:, :, 2].astype(float) - self._A[2]) / (self.C1 - self._A[2]))
+            t_b = np.maximum((self._A[0] - HazeImg[:, :, 0].astype(float)) / (self._A[0] - self.C0 + 1e-6),
+                             (HazeImg[:, :, 0].astype(float) - self._A[0]) / (self.C1 - self._A[0] + 1e-6))
+            t_g = np.maximum((self._A[1] - HazeImg[:, :, 1].astype(float)) / (self._A[1] - self.C0 + 1e-6),
+                             (HazeImg[:, :, 1].astype(float) - self._A[1]) / (self.C1 - self._A[1] + 1e-6))
+            t_r = np.maximum((self._A[2] - HazeImg[:, :, 2].astype(float)) / (self._A[2] - self.C0 + 1e-6),
+                             (HazeImg[:, :, 2].astype(float) - self._A[2]) / (self.C1 - self._A[2] + 1e-6))
 
             MaxVal = np.maximum(t_b, t_g, t_r)
             self._Transmission = np.minimum(MaxVal, 1)
