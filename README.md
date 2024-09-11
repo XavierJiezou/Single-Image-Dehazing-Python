@@ -5,7 +5,7 @@ python implementation of the paper: "Efficient Image Dehazing with Boundary Cons
 
 ### method 1
   ```
-  pip install image_dehazer
+  pip install git+https://github.com/XavierJiezou/Single-Image-Dehazing-Python.git
   ```
   
   **Usage:**
